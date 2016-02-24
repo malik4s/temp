@@ -1,5 +1,6 @@
 package com.example.rishabh_pc.moodleplus;
 
+
 import android.app.FragmentManager;
 import android.content.Context;
 import android.net.Uri;
@@ -19,32 +20,31 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link allcourses.OnFragmentInteractionListener} interface
+ * {@link noti.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link allcourses#newInstance} factory method to
+ * Use the {@link noti#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class allcourses extends Fragment {
+public class noti extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-
-  private ArrayList<String[]> Param1;
+    private String mParam1;
+    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
-    public allcourses() {
+    public noti() {
         // Required empty public constructor
     }
 
-
     // TODO: Rename and change types and number of parameters
-    public static allcourses newInstance(String[][] param) {
+    public static noti newInstance(String[][] param) {
 
-        allcourses fragment = new allcourses();
+        noti fragment = new noti();
         Bundle args = new Bundle();
         String tag;
         for (int i=0; i<param.length; i++) {
@@ -55,7 +55,10 @@ public class allcourses extends Fragment {
         return fragment;
     }
 
-    @Override
+
+    private ArrayList<String[]> Param1;
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        if (getArguments() != null) {
@@ -63,7 +66,7 @@ public class allcourses extends Fragment {
 //
 //        }
         Param1 = new ArrayList<>();
-            if (getArguments() != null) {
+        if (getArguments() != null) {
             int i = 0;
             String tag = "c" + i;
             while (getArguments().getStringArray(tag)!=null) {
@@ -79,8 +82,8 @@ public class allcourses extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_allcourses, container, false);
-        TableLayout table = (TableLayout) v.findViewById(R.id.table1);
+        View v = inflater.inflate(R.layout.fragment_noti, container, false);
+        TableLayout table = (TableLayout) v.findViewById(R.id.t6);
         FragmentManager fm = getFragmentManager();
 
         TableRow.LayoutParams rowparams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
@@ -89,12 +92,10 @@ public class allcourses extends Fragment {
             row.setLayoutParams(rowparams);
             TextView tes = new TextView(this.getActivity());
             String[] read1 = Param1.get(i);
-            Log.d("here", read1[0] + " " + read1[1]);
-            String cour = read1[0].toUpperCase() + ": " + read1[1];
+            Log.d("here", read1[0]);
+            String cour = read1[0];
             tes.setText(cour);
             tes.setTextSize(20);
-            myOnClickListener clickListener = new myOnClickListener(read1, fm);
-            tes.setOnClickListener(clickListener);
             row.addView(tes);
 
             table.addView(row);

@@ -87,18 +87,6 @@ public class grades extends Fragment {
         }
     }
 
-    private void autoScroll() {
-        DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
-        int widthScreen = 888;
-
- int widthContainer = 1000;
-// Width of one child (in this case Button)
-  int widthChild =1000;
-// Nb children which has contained in screen device
-  int nbChildInScreen = 1000;
-// Width total of the space outside the screen / 2 (= left position)
- int positionLeftWidth = 1000;
-mHorizontalScroll.smoothScrollTo(positionLeftWidth, 0);}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,31 +95,36 @@ mHorizontalScroll.smoothScrollTo(positionLeftWidth, 0);}
         View v = inflater.inflate(R.layout.fragment_grades, container, false);
         TableLayout table = (TableLayout) v.findViewById(R.id.table2);
 
-        mHorizontalScroll = new HorizontalScrollView(getActivity());
-
-        mLinearLayout = (LinearLayout) v.findViewById(R.id.blanklayout);
-
-        v.post(new Runnable() {
-
-            @Override
-            public void run() {
-                autoScroll();}});
-
-
         TableRow.LayoutParams rowparams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
         for(int i=0; i<Param1.size(); i++) {
             TableRow row = new TableRow(this.getActivity());
             row.setLayoutParams(rowparams);
-            TextView tes = new TextView(this.getActivity());
+
 
             String[] read1 = Param1.get(i);
-            Log.d("here", read1[0] + "      " + read1[1]);
-            String cour = read1[0].toUpperCase() + "     " + read1[1] + "     "+ read1[2] +"     " +read1[3] +"      "
-                    +read1[4]+"       "+ read1[5]+"  ";
-            tes.setText(cour);
-            tes.setTextSize(18);
-            row.addView(tes);
-            table.addView(row);
+
+            if (read1.length == 1) {
+                TextView tes = new TextView(this.getActivity());
+                tes.setText(read1[0]);
+                tes.setTextSize(17);
+                row.addView(tes);
+                table.addView(row);
+            } else {
+                Log.d("here", read1[0] + "      " + read1[1]);
+                for (int j = 0; j < 5; j++) {
+                    TextView tes = new TextView(this.getActivity());
+                    String addt = read1[j];
+                    tes.setText(addt);
+                    tes.setTextSize(18);
+                    tes.setPaddingRelative(20, 0, 0, 0);
+                    row.addView(tes);
+                }
+
+
+                table.addView(row);
+
+            }
+
         }
         return v;
     }

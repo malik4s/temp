@@ -1,5 +1,6 @@
 package com.example.rishabh_pc.moodleplus;
 
+
 import android.app.FragmentManager;
 import android.content.Context;
 import android.net.Uri;
@@ -15,92 +16,69 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link allcourses.OnFragmentInteractionListener} interface
+ * {@link assndescription.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link allcourses#newInstance} factory method to
+ * Use the {@link assndescription#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class allcourses extends Fragment {
+public class assndescription extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-
-  private ArrayList<String[]> Param1;
+    private String mParam1;
+    private String[] mParam2;
 
     private OnFragmentInteractionListener mListener;
 
-    public allcourses() {
+    public assndescription() {
         // Required empty public constructor
     }
 
 
     // TODO: Rename and change types and number of parameters
-    public static allcourses newInstance(String[][] param) {
-
-        allcourses fragment = new allcourses();
+    public static assndescription newInstance(String param1) {
+        assndescription fragment = new assndescription();
         Bundle args = new Bundle();
-        String tag;
-        for (int i=0; i<param.length; i++) {
-            tag = "c" + i;
-            args.putStringArray(tag, param[i]);
-        }
+        args.putString(ARG_PARAM1, param1);
+      //  args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            Param1 = getArguments().getString(ARG_PARAM1);
-//
-//        }
-        Param1 = new ArrayList<>();
-            if (getArguments() != null) {
-            int i = 0;
-            String tag = "c" + i;
-            while (getArguments().getStringArray(tag)!=null) {
-                Param1.add(getArguments().getStringArray(tag));
-                Log.d("each", getArguments().getStringArray(tag).length + "");
-                i = i+1;
-                tag = "c" + i;
-            }
 
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
         }
+
     }
+
+
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_allcourses, container, false);
-        TableLayout table = (TableLayout) v.findViewById(R.id.table1);
-        FragmentManager fm = getFragmentManager();
+                             Bundle savedInstanceState){
+        View v = inflater.inflate(R.layout.fragment_assndescription, container, false);
+        TextView te = (TextView) v.findViewById(R.id.okl);
+        te.setText(mParam1);
 
-        TableRow.LayoutParams rowparams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
-        for(int i=0; i<Param1.size(); i++) {
-            TableRow row = new TableRow(this.getActivity());
-            row.setLayoutParams(rowparams);
-            TextView tes = new TextView(this.getActivity());
-            String[] read1 = Param1.get(i);
-            Log.d("here", read1[0] + " " + read1[1]);
-            String cour = read1[0].toUpperCase() + ": " + read1[1];
-            tes.setText(cour);
-            tes.setTextSize(20);
-            myOnClickListener clickListener = new myOnClickListener(read1, fm);
-            tes.setOnClickListener(clickListener);
-            row.addView(tes);
-
-            table.addView(row);
-
-        }
         return v;
+
+
+
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

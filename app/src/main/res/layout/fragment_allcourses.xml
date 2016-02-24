@@ -5,10 +5,14 @@
     android:layout_marginTop="?attr/actionBarSize"
     tools:context="com.example.rishabh_pc.moodleplus.allcourses">
 
-    <!-- TODO: Update blank fragment layout -->
+    <HorizontalScrollView
+        android:id="@+id/hsvIcons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >    <!-- TODO: Update blank fragment layout -->
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/table1" />
-
+        android:id="@+id/table1"
+        android:layout_marginTop="80dp"/>
+</HorizontalScrollView>
 </FrameLayout>

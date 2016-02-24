@@ -2,6 +2,7 @@ package com.example.rishabh_pc.moodleplus;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,7 +27,8 @@ public class coursedata extends Fragment {
   //  private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String[] basics;
+    public String[] basics;
+
    // private String mParam2;
 
     private OnFragmentInteractionListener mListener;
@@ -53,6 +55,8 @@ public class coursedata extends Fragment {
         return fragment;
     }
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,10 +71,11 @@ public class coursedata extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_coursedata, container, false);
-        TextView te = (TextView) v.findViewById(R.id.coursename);
+        TextView te = (TextView) v.findViewById(R.id.coursenamee);
         te.setText(basics[0]+": "+ basics[1]);
-        TextView te2 = (TextView) v.findViewById(R.id.coursecode);
-        te2.setText(basics[2]);
+
+       // TextView te2 = (TextView) v.findViewById(R.id.coursecode);
+        //te2.setText(basics[2]);
 
 
         return v;

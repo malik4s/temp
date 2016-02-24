@@ -14,7 +14,17 @@
         android:textAlignment="center"
         android:textSize="50sp"
         android:textColor="@android:color/black"
-        android:id="@+id/welc"/>
+        android:id="@+id/welcp"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/notitable"
+        android:layout_below="@+id/welcp"
+
+        android:textAlignment="center"
+        android:textSize="10sp"
+        android:layout_marginTop="20dp"/>
 
 
 

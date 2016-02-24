@@ -14,6 +14,9 @@
             android:id="@+id/nav_camera"
 
             android:title="Courses" />
+        <item
+            android:id="@+id/noti"
+            android:title="Notifications" />
 
     </group>
 

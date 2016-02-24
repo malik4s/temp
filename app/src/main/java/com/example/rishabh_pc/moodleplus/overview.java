@@ -70,7 +70,7 @@ public class overview extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_overview, container, false);
-        TextView te = (TextView) v.findViewById(R.id.welc);
+        TextView te = (TextView) v.findViewById(R.id.welcp);
         String wel = "Welcome " + mParam1 + " " + mParam2;
         te.setText(wel);
         Log.d("nahi yeh hua", mParam1 + mParam2);

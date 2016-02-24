@@ -12,8 +12,21 @@
         android:layout_height="match_parent"
         >
 
-    <include layout="@layout/app_bar_my"
-        android:id="@+id/bars" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Team Registration"
+            android:textSize="40dp"
+            android:layout_marginTop="70dp"
+            android:textColor="@android:color/holo_blue_dark"
+
+            android:textAlignment="center"
+
+            android:id="@+id/treg"
+            />
+
+
+
 
 
 
@@ -23,24 +36,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
-        android:text="vinay"
-        android:layout_marginTop="30dp"
+        android:text="cs1110200"
+        android:layout_marginTop="140dp"
         android:textColor="@color/colorPrimary"
-        android:layout_below="@id/bars"
-        android:id="@+id/usr"/>
+        android:id="@+id/usr"
+        />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
         android:id="@+id/pass"
-        android:text="vinay"
-        android:layout_below="@id/usr"
+        android:text="john"
+        android:layout_marginTop="190dp"
+
         android:password="true"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log in"
-        android:layout_below="@id/pass"
+        android:layout_marginTop="290dp"
+     android:layout_centerHorizontal="true"
+
         android:onClick="send"
         android:id="@+id/login"/>
 

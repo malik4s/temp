@@ -1,56 +1,61 @@
 package com.example.rishabh_pc.moodleplus;
 
-import android.app.FragmentManager;
+
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.app.Fragment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link allcourses.OnFragmentInteractionListener} interface
+ * {@link pqr.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link allcourses#newInstance} factory method to
+ * Use the {@link pqr#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class allcourses extends Fragment {
+public class pqr extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-
-  private ArrayList<String[]> Param1;
+    private String mParam1;
+    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
-    public allcourses() {
+    public pqr() {
         // Required empty public constructor
     }
 
-
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment pqr.
+     */
     // TODO: Rename and change types and number of parameters
-    public static allcourses newInstance(String[][] param) {
-
-        allcourses fragment = new allcourses();
+    public static pqr newInstance(String param1, String param2) {
+        pqr fragment = new pqr();
         Bundle args = new Bundle();
-        String tag;
-        for (int i=0; i<param.length; i++) {
-            tag = "c" + i;
-            args.putStringArray(tag, param[i]);
-        }
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,49 +63,17 @@ public class allcourses extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            Param1 = getArguments().getString(ARG_PARAM1);
-//
-//        }
-        Param1 = new ArrayList<>();
-            if (getArguments() != null) {
-            int i = 0;
-            String tag = "c" + i;
-            while (getArguments().getStringArray(tag)!=null) {
-                Param1.add(getArguments().getStringArray(tag));
-                Log.d("each", getArguments().getStringArray(tag).length + "");
-                i = i+1;
-                tag = "c" + i;
-            }
-
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_allcourses, container, false);
-        TableLayout table = (TableLayout) v.findViewById(R.id.table1);
-        FragmentManager fm = getFragmentManager();
-
-        TableRow.LayoutParams rowparams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
-        for(int i=0; i<Param1.size(); i++) {
-            TableRow row = new TableRow(this.getActivity());
-            row.setLayoutParams(rowparams);
-            TextView tes = new TextView(this.getActivity());
-            String[] read1 = Param1.get(i);
-            Log.d("here", read1[0] + " " + read1[1]);
-            String cour = read1[0].toUpperCase() + ": " + read1[1];
-            tes.setText(cour);
-            tes.setTextSize(20);
-            myOnClickListener clickListener = new myOnClickListener(read1, fm);
-            tes.setOnClickListener(clickListener);
-            row.addView(tes);
-
-            table.addView(row);
-
-        }
-        return v;
+        return inflater.inflate(R.layout.fragment_pqr, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

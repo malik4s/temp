@@ -1,9 +1,12 @@
 package com.example.rishabh_pc.moodleplus;
 
-import android.app.FragmentManager;
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,36 +18,38 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link allcourses.OnFragmentInteractionListener} interface
+ * {@link coursegrades.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link allcourses#newInstance} factory method to
+ * Use the {@link coursegrades#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class allcourses extends Fragment {
+public class coursegrades extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-
-  private ArrayList<String[]> Param1;
+    private String mParam1;
+    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
-    public allcourses() {
-        // Required empty public constructor
+    public coursegrades() {
+
     }
 
-
     // TODO: Rename and change types and number of parameters
-    public static allcourses newInstance(String[][] param) {
 
-        allcourses fragment = new allcourses();
+    private ArrayList<String[]> Param1;
+    public static coursegrades newInstance(String[][] param) {
+
+
+
+        coursegrades fragment = new coursegrades();
         Bundle args = new Bundle();
         String tag;
         for (int i=0; i<param.length; i++) {
@@ -58,12 +63,9 @@ public class allcourses extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            Param1 = getArguments().getString(ARG_PARAM1);
-//
-//        }
+        setRetainInstance(true);
         Param1 = new ArrayList<>();
-            if (getArguments() != null) {
+        if (getArguments() != null) {
             int i = 0;
             String tag = "c" + i;
             while (getArguments().getStringArray(tag)!=null) {
@@ -75,28 +77,44 @@ public class allcourses extends Fragment {
 
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_allcourses, container, false);
-        TableLayout table = (TableLayout) v.findViewById(R.id.table1);
-        FragmentManager fm = getFragmentManager();
+        View v = inflater.inflate(R.layout.fragment_grades, container, false);
+        TableLayout table = (TableLayout) v.findViewById(R.id.table2);
+
+
 
         TableRow.LayoutParams rowparams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
         for(int i=0; i<Param1.size(); i++) {
             TableRow row = new TableRow(this.getActivity());
             row.setLayoutParams(rowparams);
-            TextView tes = new TextView(this.getActivity());
-            String[] read1 = Param1.get(i);
-            Log.d("here", read1[0] + " " + read1[1]);
-            String cour = read1[0].toUpperCase() + ": " + read1[1];
-            tes.setText(cour);
-            tes.setTextSize(20);
-            myOnClickListener clickListener = new myOnClickListener(read1, fm);
-            tes.setOnClickListener(clickListener);
-            row.addView(tes);
 
+            String[] read1 = Param1.get(i);
+            if(read1.length==1){
+                TextView tes = new TextView(this.getActivity());
+                tes.setText(read1[0]);
+                tes.setTextSize(17);
+                row.addView(tes);
+
+            }
+
+            else{
+
+
+                for (int j = 0; j < 4; j++) {
+                    TextView tes = new TextView(this.getActivity());
+                    String addt = read1[j];
+                    tes.setText(addt);
+                    tes.setTextSize(18);
+                    tes.setPaddingRelative(20, 0, 0, 0);
+                    row.addView(tes);
+                }
+
+
+
+            }
             table.addView(row);
 
         }
